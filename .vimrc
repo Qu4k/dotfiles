@@ -4,36 +4,23 @@ set nocompatible
 " Helps force plugins to load correctly when it is turned back on below
 filetype off
 
-" Loading plugins
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+" Plug begin
+call plug#begin('~/.vim/plugged')
 
 " AIRLINE: lean & mean status/tabline for vim that's light as air
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " GRUVBOX: Retro groove color scheme for Vim
-Plugin 'morhetz/gruvbox'
+Plug 'morhetz/gruvbox'
 
 " AIRLINE CONFIG: airline color scheme & options
 let g:airline_theme='gruvbox'
 let g:airline#extensions#tabline#enabled = 1
 
-" YCM: a code-completion engine for Vim
-" Plugin 'ycm-core/YouCompleteMe'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" YCM CONFIG: 
-" enable previewpoput
-" set previewpopup=height:10,width:60,highlight:PMenuSbar
-" set completeopt+=popup
-" set completepopup=height:15,width:60,border:off,highlight:PMenuSbar
-" let g:ycm_add_preview_to_completeopt = 1
-
-call vundle#end()
+call plug#end()
 
 " Turn on syntax highlighting
 syntax on
