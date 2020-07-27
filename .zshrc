@@ -1,21 +1,27 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+# dev home
+export DEVPATH="$HOME/dev"
+export DEVHOME="$DEVPATH/home"
+
 # go
-export GOPATH="$HOME/Developer/Home/go"
+export GOPATH="$DEVHOME/go"
 export GOROOT="$(brew --prefix golang)/libexec"
 
 # py
-export PY3BIN="/Users/rossi/Library/Python/3.7/bin"
-
-# devpath
-export DEVPATH="$HOME/Developer"
+export PY3BIN="$HOME/Library/Python/3.7/bin"
+# ... conda
+export CONDA="$DEVHOME/miniconda3"
 
 # yarn
 export YARN="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"
 
 # deno
-export DENO="/Users/rossi/.deno/bin"
+export DENO="$HOME/.deno/bin"
+
+# rust
+export RUST="$HOME/.cargo/bin"
 
 # sbin
 export PATH="/usr/local/sbin:$PATH"
@@ -45,7 +51,8 @@ ZSH_THEME=""
 
 # oh-my-zsh overrides the prompt, so Pure must be activated after `source $ZSH/oh-my-zsh.sh`
 # .zshrc
-autoload -U promptinit; promptinit
+autoload -U promptinit
+promptinit
 # lamda, because it looks cool
 PURE_PROMPT_SYMBOL="λ"
 prompt pure
@@ -155,16 +162,16 @@ source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Utility commands
-cdf () {
-  finderPath=`osascript -e 'tell application "Finder"
+cdf() {
+  finderPath=$(osascript -e 'tell application "Finder"
                                try
                                    set currentFolder to (folder of the front window as alias)
                                on error
                                    set currentFolder to (path to desktop folder as alias)
                                end try
                                POSIX path of currentFolder  
-                            end tell'`;
-  cd "$finderPath"
+                            end tell')
+  cd "$finderPath" || return
 }
 alias f=open
 alias edit=$EDITOR
@@ -178,16 +185,18 @@ alias edit=$EDITOR
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/rossi/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('/Users/rossi/dev/home/miniconda3/bin/conda' 'shell.zsh' 'hook' 2>/dev/null)"
 if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
+  eval "$__conda_setup"
 else
-    if [ -f "/Users/rossi/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/rossi/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/rossi/miniconda3/bin:$PATH"
-    fi
+  if [ -f "/Users/rossi/dev/home/miniconda3/etc/profile.d/conda.sh" ]; then
+    . "/Users/rossi/dev/home/miniconda3/etc/profile.d/conda.sh"
+  else
+    export PATH="/Users/rossi/dev/home/miniconda3/bin:$PATH"
+  fi
 fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+# autocompletion
+. <(denon --completion)
