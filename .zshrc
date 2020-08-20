@@ -9,11 +9,6 @@ export DEVHOME="$DEVPATH/home"
 export GOPATH="$DEVHOME/go"
 export GOROOT="$(brew --prefix golang)/libexec"
 
-# py
-export PY3BIN="$HOME/Library/Python/3.7/bin"
-# ... conda
-export CONDA="$DEVHOME/miniconda3"
-
 # yarn
 export YARN="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"
 
@@ -34,11 +29,12 @@ export PATH="$PATH:$DENO"
 export PATH="$PATH:$DEVPATH/bin"
 export PATH="$PATH:$NODEPATH/bin"
 export PATH="$PATH:$GOPATH/bin:$GOROOT/bin"
-export PATH="$PATH:$PY3BIN"
 export PATH="$PATH:/usr/local/bin/"
 
 # clang fallback libraryes
 export DYLD_FALLBACK_LIBRARY_PATH="/usr/X11/lib:/usr/lib"
+
+export SDKROOT="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk"
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/rossi/.oh-my-zsh"
@@ -176,27 +172,12 @@ cdf() {
 alias f=open
 alias edit=$EDITOR
 
+if command -v pyenv 1>/dev/null 2>&1; then eval "$(pyenv init -)"; fi
+if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+
 # asdf
 . /usr/local/opt/asdf/asdf.sh
 . /usr/local/opt/asdf/etc/bash_completion.d/asdf.bash
 
 # z - jump around
 . /usr/local/etc/profile.d/z.sh
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/rossi/dev/home/miniconda3/bin/conda' 'shell.zsh' 'hook' 2>/dev/null)"
-if [ $? -eq 0 ]; then
-  eval "$__conda_setup"
-else
-  if [ -f "/Users/rossi/dev/home/miniconda3/etc/profile.d/conda.sh" ]; then
-    . "/Users/rossi/dev/home/miniconda3/etc/profile.d/conda.sh"
-  else
-    export PATH="/Users/rossi/dev/home/miniconda3/bin:$PATH"
-  fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-# autocompletion
-. <(denon --completion)
