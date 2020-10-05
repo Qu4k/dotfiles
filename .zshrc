@@ -21,8 +21,8 @@ export RUST="$HOME/.cargo/bin"
 # sbin
 export PATH="/usr/local/sbin:$PATH"
 
-# llvm
-export PATH="/usr/local/opt/llvm/bin:$PATH"
+# # llvm
+# export PATH="/usr/local/opt/llvm/bin:$PATH"
 
 export PATH="$PATH:$YARN"
 export PATH="$PATH:$DENO"
@@ -30,11 +30,12 @@ export PATH="$PATH:$DEVPATH/bin"
 export PATH="$PATH:$NODEPATH/bin"
 export PATH="$PATH:$GOPATH/bin:$GOROOT/bin"
 export PATH="$PATH:/usr/local/bin/"
+export PATH="$PATH:$HOME/.composer/vendor/bin"
 
-# clang fallback libraryes
-export DYLD_FALLBACK_LIBRARY_PATH="/usr/X11/lib:/usr/lib"
+# # clang fallback libraryes
+# export DYLD_FALLBACK_LIBRARY_PATH="/usr/X11/lib:/usr/lib"
 
-export SDKROOT="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk"
+# export SDKROOT="/Applications/Xcode-beta.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk"
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/rossi/.oh-my-zsh"
@@ -45,13 +46,8 @@ export ZSH="/Users/rossi/.oh-my-zsh"
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME=""
 
-# oh-my-zsh overrides the prompt, so Pure must be activated after `source $ZSH/oh-my-zsh.sh`
-# .zshrc
-autoload -U promptinit
-promptinit
-# lamda, because it looks cool
-PURE_PROMPT_SYMBOL="λ"
-prompt pure
+# staship prompt (starship.rs)
+eval "$(starship init zsh)"
 
 # Enable 10ms timeout for key sequesces
 # This is set to fix vim <ESC> recognition
@@ -169,8 +165,9 @@ cdf() {
                             end tell')
   cd "$finderPath" || return
 }
+
 alias f=open
-alias edit=$EDITOR
+alias edit="$EDITOR"
 
 if command -v pyenv 1>/dev/null 2>&1; then eval "$(pyenv init -)"; fi
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
@@ -181,3 +178,7 @@ if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -
 
 # z - jump around
 . /usr/local/etc/profile.d/z.sh
+
+# deno tabtab source for modules
+# uninstall by removing these lines
+[[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
