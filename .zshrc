@@ -87,10 +87,10 @@ source $ZSH/oh-my-zsh.sh
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vi'
 else
-  export EDITOR='vim'
+  export EDITOR='nvim'
 fi
 
-# User aliases 
+alias vim='nvim'
 
 # Utility commands
 cdf() {
@@ -123,3 +123,6 @@ if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -
 # Activate z - jump around utility
 . /usr/local/etc/profile.d/z.sh
 
+
+# Created by `userpath` on 2020-10-27 18:51:59
+export PATH="$PATH:/Users/rossi/.local/bin"
