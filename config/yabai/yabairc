@@ -34,6 +34,8 @@ yabai -m config left_padding                 12
 yabai -m config right_padding                12
 yabai -m config window_gap                   12
 
+# yabai -m config external_bar all:20:0
+
 yabai -m rule --add app="^Mail$" space=mail
 yabai -m rule --add app="^Safari$" space=web
 yabai -m rule --add app="^Notes$" space=notes
@@ -45,5 +47,21 @@ yabai -m rule --add app="^System Preferences$" manage=off
 # signals
 yabai -m signal --add event=window_destroyed action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse"
 yabai -m signal --add event=application_terminated action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse"
+
+# signals for nibar
+# yabai -m signal --add event=space_changed \
+#     action="osascript -e 'tell application \"UÌˆbersicht\" to refresh widget id \"nibar-spaces-jsx\"'"
+
+# yabai -m signal --add event=display_changed \
+#     action="osascript -e 'tell application \"Ãœbersicht\" to refresh widget id \"nibar-spaces-jsx\"'"
+
+# yabai -m signal --add event=window_focused \
+#     action="osascript -e 'tell application \"†bersicht\" to refresh widget id \"nibar-windows-jsx\"'"
+# yabai -m signal --add event=window_destroyed \
+#     action="osascript -e 'tell application \"†bersicht\" to refresh widget id \"nibar-windows-jsx\"'"
+# yabai -m signal --add event=window_created \
+#     action="osascript -e 'tell application \"†bersicht\" to refresh widget id \"nibar-windows-jsx\"'"
+# yabai -m signal --add event=space_changed \
+#     action="osascript -e 'tell application \"†bersicht\" to refresh widget id \"nibar-windows-jsx\"'"
 
 echo "yabai configuration loaded.."

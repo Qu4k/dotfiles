@@ -1,13 +1,19 @@
+# 
+# Environment variables and PATH
+#
+
 # dev home
 export DEVPATH="$HOME/dev"
 export DEVHOME="$DEVPATH/home"
+export PATH="$PATH:$DEVPATH/bin"
 
 # yarn
 export YARN="$HOME/.yarn/bin"
 
 # go
 export GOPATH="$DEVHOME/go"
-export GOROOT="$(brew --prefix golang)/libexec"
+export GOROOT="/usr/local/opt/go/libexec"
+export PATH="$PATH:$GOPATH/bin:$GOROOT/bin"
 
 # android
 export ANDROID_SDK_ROOT="$DEVHOME/android"
@@ -18,54 +24,56 @@ export PATH="$PATH:$ANDROID_HOME/tools/bin"
 export PATH="$PATH:$ANDROID_HOME/platform-tools"
 
 # java, but android related ;)
-export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home"
 
 # yarn
-export YARN="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"
+export YARN_HOME="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"
+export PATH="$PATH:$YARN_HOME"
 
 # deno
-export DENO="$HOME/.deno"
+export DENO_HOME="$HOME/.deno"
+export PATH="$PATH:$DENO_HOME/bin"
 
 # rust
-export RUST="$HOME/.cargo/bin"
+export RUST_HOME="$HOME/.cargo/bin"
 
-# sbin
+# other bins
 export PATH="/usr/local/sbin:$PATH"
 export PATH="$PATH:$HOME/.local/bin"
-
-export PATH="$PATH:$YARN"
-export PATH="$PATH:$DENO/bin"
-export PATH="$PATH:$DEVPATH/bin"
-export PATH="$PATH:$NODEPATH/bin"
-export PATH="$PATH:$GOPATH/bin:$GOROOT/bin"
 export PATH="$PATH:/usr/local/bin/"
-export PATH="$PATH:$HOME/.composer/vendor/bin"
-export PATH="$PATH:$QT/bin"
-export PATH="$PATH:$NGSPICE/bin"
 
-# # clang fallback libraryes
-# export DYLD_FALLBACK_LIBRARY_PATH="/usr/X11/lib:/usr/lib"
+#
+# Oh-My-Zsh functionality
+#
+
+# plugins
+plugins=(
+  sudo
+  colorize
+  common-aliases
+)
 
 export ZSH="/Users/rossi/.oh-my-zsh"
 source $ZSH/oh-my-zsh.sh
 
+# Activate zsh autosuggestions
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+#
+# CLI prompt
+#
+
 # staship prompt (starship.rs)
 eval "$(starship init zsh)"
+
+#
+# Input
+#
 
 # Enable 10ms timeout for key sequesces
 # This is set to fix vim <ESC> recognition
 KEYTIMEOUT=1
-
-# ZSH plugins
-plugins=(
-  git
-  brew
-  common-aliases
-  sudo
-  colorize
-)
-
-# User configuration
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
@@ -74,9 +82,15 @@ else
   export EDITOR='nvim'
 fi
 
+#
+# Aliases and commands
+#
+
+# "I won't ever go back"
 alias vim='nvim'
 
-# Utility commands
+# cdf(7)
+# change directory to current finder window
 cdf() {
   finderPath=$(osascript -e 'tell application "Finder"
                                try
@@ -88,10 +102,6 @@ cdf() {
                             end tell')
   cd "$finderPath" || return
 }
-
-# Activate zsh autosuggestions
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Activate asdf version manager
 . /usr/local/opt/asdf/asdf.sh
