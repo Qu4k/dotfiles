@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+# dev home
+export DEVPATH="$HOME/dev"
+export DEVHOME="$DEVPATH/home"
+export PATH="$PATH:$DEVHOME/bin"
+
+# yarn
+export YARN="$HOME/.yarn/bin"
+
+# go
+export GOPATH="$DEVHOME/go"
+export GOROOT="/usr/local/opt/go/libexec"
+export PATH="$PATH:$GOPATH/bin:$GOROOT/bin"
+
+# android
+export ANDROID_SDK_ROOT="$DEVHOME/android"
+export ANDROID_HOME="$ANDROID_SDK_ROOT"
+export PATH="$PATH:$ANDROID_HOME/emulator"
+export PATH="$PATH:$ANDROID_HOME/tools"
+export PATH="$PATH:$ANDROID_HOME/tools/bin"
+export PATH="$PATH:$ANDROID_HOME/platform-tools"
+
+# java, but android related ;)
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home"
+
+# yarn
+export YARN_HOME="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"
+export PATH="$PATH:$YARN_HOME"
+
+# deno
+export DENO_HOME="$HOME/.deno"
+export PATH="$PATH:$DENO_HOME/bin"
+
+# rust
+export RUST_HOME="$HOME/.cargo/bin"
+
+# other bins
+export PATH="/usr/local/sbin:$PATH"
+export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:/usr/local/bin/"

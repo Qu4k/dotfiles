@@ -10,11 +10,11 @@ yabai -m config mouse_follows_focus          off
 # yabai -m config focus_follows_mouse          autoraise
 yabai -m config window_placement             second_child
 yabai -m config window_topmost               on
-yabai -m config window_shadow                off
+yabai -m config window_shadow                on
 yabai -m config window_opacity               on
 yabai -m config window_opacity_duration      0.0
 yabai -m config active_window_opacity        1.0
-yabai -m config normal_window_opacity        0.95
+yabai -m config normal_window_opacity        1.0
 yabai -m config window_border                off
 yabai -m config window_border_width          6
 yabai -m config active_window_border_color   0xff775759
@@ -36,17 +36,17 @@ yabai -m config window_gap                   12
 
 # yabai -m config external_bar all:20:0
 
-yabai -m rule --add app="^Mail$" space=mail
-yabai -m rule --add app="^Safari$" space=web
-yabai -m rule --add app="^Notes$" space=notes
-yabai -m rule --add app="^Spotify$" space=media
-yabai -m rule --add app="^Discord$" space=social grid=1:1:0:0:1:1 manage=off
-yabai -m rule --add app="^Steam$" space=games manage=off
+yabai -m rule --add app="^Discord$" manage=off
+yabai -m rule --add app="^Steam$" manage=off
 yabai -m rule --add app="^System Preferences$" manage=off
+yabai -m rule --add app="^Kap$" title="^Exports$" manage=off
 
 # signals
 yabai -m signal --add event=window_destroyed action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse"
 yabai -m signal --add event=application_terminated action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse"
+
+# metamask fix
+yabai -m signal --add app='Google Chrome' event='window_title_changed' action="yabai -m rule --add label=$(uuidgen) app='^Google Chrome$' title='^MetaMask' manage=off"
 
 # signals for nibar
 # yabai -m signal --add event=space_changed \
