@@ -107,7 +107,7 @@ if exists("&relativenumber")
 	au BufReadPost * set relativenumber
 endif
 " Start scrolling three lines before the horizontal window border
-set scrolloff=3
+set scrolloff=5
 
 " Strip trailing whitespace (,ss)
 function! StripWhitespace()
@@ -120,6 +120,10 @@ endfunction
 noremap <leader>ss :call StripWhitespace()<CR>
 " Save a file as root (,W)
 noremap <leader>W :w !sudo tee % > /dev/null<CR>
+
+" COC: navigate completion list
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " Automatic commands
 if has("autocmd")

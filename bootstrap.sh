@@ -14,7 +14,7 @@ function doIt() {
 		--exclude "README.md" \
 		--exclude "LICENSE-MIT.txt" \
 		-avh --no-perms . ~;
-	source ~/.zshrc;
+	# source ~/.zshrc;
 }
 
 if [ "$1" == "--force" ] || [ "$1" == "-f" ]; then
