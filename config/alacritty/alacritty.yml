@@ -270,7 +270,7 @@ background_opacity: 1
 #selection:
 # This string contains all characters that are used as separators for
 # "semantic words" in Alacritty.
-#semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
+#semantic_escape_chars: ",?`|:\"' ()[]{}<>\t"
 
 # When set to `true`, selected text will be copied to the primary clipboard.
 #save_to_clipboard: false
@@ -279,7 +279,7 @@ background_opacity: 1
 # Cursor style
 #
 # Values for `style`:
-#   - ▇ Block
+#   - ? Block
 #   - _ Underline
 #   - | Beam
 #style: Block
