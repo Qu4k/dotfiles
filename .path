@@ -5,6 +5,11 @@ export DEVPATH="$HOME/dev"
 export DEVHOME="$DEVPATH/home"
 export PATH="$PATH:$DEVHOME/bin"
 
+# python
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PATH:$PYENV_ROOT/bin"
+export PATH="$PATH:$HOME/.poetry/bin"
+
 # yarn
 export YARN="$HOME/.yarn/bin"
 
@@ -34,8 +39,3 @@ export PATH="$PATH:$DENO_HOME/bin"
 
 # rust
 export RUST_HOME="$HOME/.cargo/bin"
-
-# other bins
-export PATH="/usr/local/sbin:$PATH"
-export PATH="$PATH:$HOME/.local/bin"
-export PATH="$PATH:/usr/local/bin/"
