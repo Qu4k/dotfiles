@@ -5,13 +5,12 @@ export DEVPATH="$HOME/dev"
 export DEVHOME="$DEVPATH/home"
 export PATH="$PATH:$DEVHOME/bin"
 
+# brew installed packages get priority
+export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+
 # python
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PATH:$PYENV_ROOT/bin"
-export PATH="$PATH:$HOME/.poetry/bin"
-
-# yarn
-export YARN="$HOME/.yarn/bin"
 
 # go
 export GOPATH="$DEVHOME/go"
@@ -26,16 +25,16 @@ export PATH="$PATH:$ANDROID_HOME/tools"
 export PATH="$PATH:$ANDROID_HOME/tools/bin"
 export PATH="$PATH:$ANDROID_HOME/platform-tools"
 
-# java, but android related ;)
-export JAVA_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home"
-
-# yarn
-export YARN_HOME="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"
-export PATH="$PATH:$YARN_HOME"
-
 # deno
 export DENO_HOME="$HOME/.deno"
 export PATH="$PATH:$DENO_HOME/bin"
 
 # rust
 export RUST_HOME="$HOME/.cargo/bin"
+
+# perl
+export PATH="$DEVHOME/perl5/bin${PATH:+:${PATH}}"
+export PERL5LIB="$DEVHOME/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"
+export PERL_LOCAL_LIB_ROOT="$DEVHOME/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"
+export PERL_MB_OPT="--install_base \"$DEVHOME/perl5\""
+export PERL_MM_OPT="INSTALL_BASE=$DEVHOME/perl5"

@@ -50,6 +50,3 @@ for file in ~/.{path,aliases,functions,extra}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 unset file;
-
-# brew installed gets priority
-export PATH="/usr/local/bin:/usr/local/sbin:$PATH"

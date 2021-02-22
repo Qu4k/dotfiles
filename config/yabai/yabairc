@@ -40,13 +40,12 @@ yabai -m rule --add app="^Discord$" manage=off
 yabai -m rule --add app="^Steam$" manage=off
 yabai -m rule --add app="^System Preferences$" manage=off
 yabai -m rule --add app="^Kap$" title="^Exports$" manage=off
+yabai -m rule --add app="^Mullvad VPN$" manage=off
+yabai -m rule --add app="^MetaMask" manage=off
 
 # signals
 yabai -m signal --add event=window_destroyed action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse"
 yabai -m signal --add event=application_terminated action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse"
-
-# metamask fix
-yabai -m signal --add app='Google Chrome' event='window_title_changed' action="yabai -m rule --add label=$(uuidgen) app='^Google Chrome$' title='^MetaMask' manage=off"
 
 # signals for nibar
 # yabai -m signal --add event=space_changed \
@@ -56,12 +55,12 @@ yabai -m signal --add app='Google Chrome' event='window_title_changed' action="y
 #     action="osascript -e 'tell application \"Ãœbersicht\" to refresh widget id \"nibar-spaces-jsx\"'"
 
 # yabai -m signal --add event=window_focused \
-#     action="osascript -e 'tell application \"†bersicht\" to refresh widget id \"nibar-windows-jsx\"'"
+#     action="osascript -e 'tell application \"ï¿½bersicht\" to refresh widget id \"nibar-windows-jsx\"'"
 # yabai -m signal --add event=window_destroyed \
-#     action="osascript -e 'tell application \"†bersicht\" to refresh widget id \"nibar-windows-jsx\"'"
+#     action="osascript -e 'tell application \"ï¿½bersicht\" to refresh widget id \"nibar-windows-jsx\"'"
 # yabai -m signal --add event=window_created \
-#     action="osascript -e 'tell application \"†bersicht\" to refresh widget id \"nibar-windows-jsx\"'"
+#     action="osascript -e 'tell application \"ï¿½bersicht\" to refresh widget id \"nibar-windows-jsx\"'"
 # yabai -m signal --add event=space_changed \
-#     action="osascript -e 'tell application \"†bersicht\" to refresh widget id \"nibar-windows-jsx\"'"
+#     action="osascript -e 'tell application \"ï¿½bersicht\" to refresh widget id \"nibar-windows-jsx\"'"
 
 echo "yabai configuration loaded.."

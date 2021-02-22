@@ -1,17 +1,16 @@
 #!/usr/bin/env bash
 
-# Activate asdf version manager
-. /usr/local/opt/asdf/asdf.sh
-. /usr/local/opt/asdf/etc/bash_completion.d/asdf.bash
-
 # Activate z - jump around utility
 . /usr/local/etc/profile.d/z.sh
-
-# Spicetify
-export SPICETIFY_CONFIG=~/.config/spicetify
 
 # pyenv
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
   eval "$(pyenv virtualenv-init -)" 
 fi
+
+# nvm
+ export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && source "/usr/local/opt/nvm/nvm.sh" --no-use # Load nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && source "/usr/local/opt/nvm/etc/bash_completion.d/nvm" --no-use  # Load nvm bash_completion
+
