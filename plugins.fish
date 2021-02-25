@@ -6,3 +6,4 @@ if ! type -q fisher
 end
 
 fisher install jorgebucaran/nvm.fish
+fisher install jethrokuan/z
