@@ -1,9 +1,9 @@
-#!/usr/bin/env bash
+#!/usr/bin/env fish
 
 # cdf(7)
 # change directory to current finder window
-cdf() {
-  finderPath=$(osascript -e 'tell application "Finder"
+function cdf
+    set finderPath (osascript -e 'tell application "Finder"
                     try
                         set currentFolder to (folder of the front window as alias)
                     on error
@@ -11,5 +11,5 @@ cdf() {
                     end try
                     POSIX path of currentFolder  
                 end tell')
-  cd "$finderPath" || return
-}
+    cd "$finderPath" || return
+end
